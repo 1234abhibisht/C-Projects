@@ -1,0 +1,13 @@
+Multiple test files were used to verify each function.
+Test Case 1: Count Frequency
+Input: Word = "hello"
+Result: Appears 3 times
+Test Case 2: Word Search
+Input: Word = "world"
+Result: Word found
+Test Case 3: Replace Word
+Input: Replace "hello" with "hi"
+Result: All occurrences replaced successfully
+Test Case 4: Character & Line Count
+Result: Characters = 120, Lines = 5
+All outputs matched expectations
