@@ -146,7 +146,11 @@ int main()
 
     case 5:
         printf("Thank you for using this program!\n");
-        exit(0);
+        exit(0);  /* exits program with zero errors */
+
+    default : 
+        printf("Wrong Option Entered, failed to run\n");
+        exit(1);  /* exits program with error */
     }
 
     fclose(f);
