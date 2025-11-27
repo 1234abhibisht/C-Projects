@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "header.h"
 
 int main()
@@ -15,7 +12,7 @@ int main()
     fileName[strcspn(fileName, "\n")] = '\0';
 
     FILE *f = fopen(fileName, "r");
-    if (f == NULL)
+    if (!f)
     {
         printf("Failed to open file\n");
         exit(1);
@@ -26,7 +23,7 @@ int main()
     rewind(f);
 
     char *str = (char *)malloc(size + 1);
-    if (str == NULL)
+    if (!str)
     {
         printf("Failed to allocate memory\n");
         exit(1);
@@ -46,6 +43,7 @@ int main()
     printf("5 - End the Program\n");
     printf("----------------------------------------------------------\n\n");
     printf("Enter your response : ");
+
     scanf("%d", &response);
     getchar();
 
@@ -55,20 +53,13 @@ int main()
     {
         printf("\nContent inside your file : %s\n\n", str);
 
-        char *freqStr = str;
         char frequencyWord[30];
         printf("Enter a word whose frequency you want to count : ");
         fgets(frequencyWord, sizeof(frequencyWord), stdin);
         frequencyWord[strcspn(frequencyWord, "\n")] = '\0';
 
-        int frequencyCount = 0;
-        while ((freqStr = strstr(freqStr, frequencyWord)) != NULL)
-        {
-            frequencyCount++;
-            freqStr += strlen(frequencyWord);
-        }
-
-        printf("\n%s appears %d times\n", frequencyWord, frequencyCount);
+        wordFrequenc(str, frequencyWord);
+        rewind(f);
         break;
     }
 
@@ -81,25 +72,8 @@ int main()
         fgets(findWord, sizeof(findWord), stdin);
         findWord[strcspn(findWord, "\n")] = '\0';
 
+        wordFind(findWord, f);
         rewind(f);
-
-        char linebuffer[1000];
-        int linecount = 0;
-        int found = 0;
-
-        while (fgets(linebuffer, sizeof(linebuffer), f))
-        {
-            linecount++;
-            if (strstr(linebuffer, findWord))
-            {
-                printf("Word found in line %d\n", linecount);
-                found = 1;
-            }
-        }
-
-        if (!found)
-            printf("Word not found in file\n");
-
         break;
     }
 
@@ -107,50 +81,37 @@ int main()
     {
         printf("\nContent inside your file : %s\n\n", str);
 
-        char wordOld[30];
+        char wordOld[30], wordNew[30];
         printf("Enter a word which you want to replace in file : ");
         fgets(wordOld, sizeof(wordOld), stdin);
         wordOld[strcspn(wordOld, "\n")] = '\0';
 
-        printf("\nEnter a new word : ");
-        char wordNew[30];
+        printf("Enter a new word : ");
         fgets(wordNew, sizeof(wordNew), stdin);
         wordNew[strcspn(wordNew, "\n")] = '\0';
 
         replaceWords(str, wordOld, wordNew, fileName);
-        printf("Your file has been updated\n");
+        printf("Your file has been updated\n\n");
+        rewind(f);
         break;
     }
 
     case 4:
     {
         printf("\nContent inside your file : %s\n\n", str);
+
+        lineCharCount(f);
         rewind(f);
-
-        int ch, charac = 0, line = 0;
-
-        while ((ch = fgetc(f)) != EOF)
-        {
-            charac++;
-            if (ch == '\n')
-                line++;
-        }
-
-        if (line == 0 && charac > 0)
-            line = 1;
-
-        printf("\nTotal characters: %d\n", charac);
-        printf("Total lines: %d\n", line);
         break;
     }
 
     case 5:
         printf("Thank you for using this program!\n");
-        exit(0);  /* exits program with zero errors */
+        exit(0);
 
-    default : 
+    default:
         printf("Wrong Option Entered, failed to run\n");
-        exit(1);  /* exits program with error */
+        exit(1);
     }
 
     fclose(f);
