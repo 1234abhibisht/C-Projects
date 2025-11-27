@@ -1,3 +1,7 @@
+Name - Abhishek Bisht
+SAP ID - 590024482
+Batch - 62
+
 A simple and functional Text File Manager implemented in the C programming language.
 This program allows users to perform common text-processing operations such as word counting, searching, replacing text, and counting characters/lines in a file.
 
