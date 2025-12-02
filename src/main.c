@@ -1,7 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "header.h"
 
-int main()
-{
+int main() {
     printf("--------------------------------------------------------------------\n");
     printf("Welcome to the -----------------TEXT FILE MANAGER-------------------\n");
     printf("--------------------------------------------------------------------\n\n");
@@ -12,8 +14,7 @@ int main()
     fileName[strcspn(fileName, "\n")] = '\0';
 
     FILE *f = fopen(fileName, "r");
-    if (!f)
-    {
+    if (!f) {
         printf("Failed to open file\n");
         exit(1);
     }
@@ -23,8 +24,7 @@ int main()
     rewind(f);
 
     char *str = (char *)malloc(size + 1);
-    if (!str)
-    {
+    if (!str) {
         printf("Failed to allocate memory\n");
         exit(1);
     }
@@ -33,7 +33,6 @@ int main()
     str[size] = '\0';
     rewind(f);
 
-    int response;
     printf("\n----------------------------------------------------------\n");
     printf("Select the tool which you want to use\n");
     printf("1 - Particular Word Counting Tool\n");
@@ -44,74 +43,70 @@ int main()
     printf("----------------------------------------------------------\n\n");
     printf("Enter your response : ");
 
-    scanf("%d", &response);
-    getchar();
+    enum Menu response;
+    scanf("%d", (int*)&response);
+    getchar(); // clear newline
 
-    switch (response)
-    {
-    case 1:
-    {
-        printf("\nContent inside your file : %s\n\n", str);
+    switch (response) {
+        case frequency: {
+            printf("\nContent inside your file : %s\n\n", str);
 
-        char frequencyWord[30];
-        printf("Enter a word whose frequency you want to count : ");
-        fgets(frequencyWord, sizeof(frequencyWord), stdin);
-        frequencyWord[strcspn(frequencyWord, "\n")] = '\0';
+            char frequencyWord[30];
+            printf("Enter a word whose frequency you want to count : ");
+            fgets(frequencyWord, sizeof(frequencyWord), stdin);
+            frequencyWord[strcspn(frequencyWord, "\n")] = '\0';
 
-        wordFrequency(str, frequencyWord);
-        rewind(f);
-        break;
-    }
+            wordFrequency(str, frequencyWord);
+            rewind(f);
+            break;
+        }
 
-    case 2:
-    {
-        printf("\nContent inside your file : %s\n\n", str);
+        case find: {
+            printf("\nContent inside your file : %s\n\n", str);
 
-        char findWord[30];
-        printf("Enter a word you want to find inside the file : ");
-        fgets(findWord, sizeof(findWord), stdin);
-        findWord[strcspn(findWord, "\n")] = '\0';
+            char findWord[30];
+            printf("Enter a word you want to find inside the file : ");
+            fgets(findWord, sizeof(findWord), stdin);
+            findWord[strcspn(findWord, "\n")] = '\0';
 
-        wordFind(findWord, f);
-        rewind(f);
-        break;
-    }
+            wordFind(findWord, f);
+            rewind(f);
+            break;
+        }
 
-    case 3:
-    {
-        printf("\nContent inside your file : %s\n\n", str);
+        case replace: {
+            printf("\nContent inside your file : %s\n\n", str);
 
-        char wordOld[30], wordNew[30];
-        printf("Enter a word which you want to replace in file : ");
-        fgets(wordOld, sizeof(wordOld), stdin);
-        wordOld[strcspn(wordOld, "\n")] = '\0';
+            char wordOld[30], wordNew[30];
+            printf("Enter a word which you want to replace in file : ");
+            fgets(wordOld, sizeof(wordOld), stdin);
+            wordOld[strcspn(wordOld, "\n")] = '\0';
 
-        printf("Enter a new word : ");
-        fgets(wordNew, sizeof(wordNew), stdin);
-        wordNew[strcspn(wordNew, "\n")] = '\0';
+            printf("Enter a new word : ");
+            fgets(wordNew, sizeof(wordNew), stdin);
+            wordNew[strcspn(wordNew, "\n")] = '\0';
 
-        replaceWords(str, wordOld, wordNew, fileName);
-        printf("Your file has been updated\n\n");
-        rewind(f);
-        break;
-    }
+            replaceWords(str, wordOld, wordNew, fileName);
+            printf("Your file has been updated\n\n");
+            rewind(f);
+            break;
+        }
 
-    case 4:
-    {
-        printf("\nContent inside your file : %s\n\n", str);
+        case linechar: {
+            printf("\nContent inside your file : %s\n\n", str);
 
-        lineCharCount(f);
-        rewind(f);
-        break;
-    }
+            lineCharCount(f);
+            rewind(f);
+            break;
+        }
 
-    case 5:
-        printf("Thank you for using this program!\n");
-        exit(0);
+        case end:
+            printf("Thank you for using this program!\n");
+            exit(0);
 
-    default:
-        printf("Wrong Option Entered, failed to run\n");
-        exit(1);
+        default:
+            printf("Wrong Option Entered, failed to run\n");
+            exit(1);
     }
 
     fclose(f);
