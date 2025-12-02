@@ -1,8 +1,4 @@
 #include "header.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
 void wordFrequency(char *freqStr, char frequencyWord[]) {
     int frequencyCount = 0;
