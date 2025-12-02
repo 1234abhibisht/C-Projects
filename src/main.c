@@ -58,7 +58,7 @@ int main()
         fgets(frequencyWord, sizeof(frequencyWord), stdin);
         frequencyWord[strcspn(frequencyWord, "\n")] = '\0';
 
-        wordFrequenc(str, frequencyWord);
+        wordFrequency(str, frequencyWord);
         rewind(f);
         break;
     }
