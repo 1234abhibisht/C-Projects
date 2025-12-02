@@ -1,6 +1,6 @@
 #include "header.h"
 
-void wordFrequenc(char *freqStr, char frequencyWord[])
+void wordFrequency(char *freqStr, char frequencyWord[])
 {
     int frequencyCount = 0;
     while ((freqStr = strstr(freqStr, frequencyWord)) != NULL)
