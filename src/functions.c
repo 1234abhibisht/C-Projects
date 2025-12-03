@@ -10,6 +10,7 @@ void wordFrequency(char *freqStr, char frequencyWord[])
     }
 
     printf("\n%s appears %d times\n\n", frequencyWord, frequencyCount);
+    return;
 }
 
 void wordFind(char findWord[], FILE *f2)
@@ -36,6 +37,7 @@ void wordFind(char findWord[], FILE *f2)
     }
 
     printf("\n");
+    return;
 }
 
 void replaceWords(char *oldStr, char *wordOld, char *wordNew, char *fileName)
@@ -90,6 +92,7 @@ void replaceWords(char *oldStr, char *wordOld, char *wordNew, char *fileName)
     rename("temp.txt", fileName);
 
     free(newStr);
+    return;
 }
 
 void lineCharCount(FILE *f4)

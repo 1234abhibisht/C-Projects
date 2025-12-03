@@ -7,11 +7,13 @@
 #include <ctype.h>
 
 enum Menu {
-    frequency = 1,
-    find = 2,
-    replace = 3,
-    linechar = 4,
-    end = 5
+    create = 1,
+    read = 2,
+    frequency = 3,
+    find = 4,
+    replace = 5,
+    linechar = 6,
+    end = 7
 };
 
 void wordFrequency(char *freqStr, char frequencyWord[]);
