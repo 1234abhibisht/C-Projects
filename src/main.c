@@ -185,17 +185,9 @@ int main()
         long sizeFind = ftell(findf);
         rewind(findf);
 
-        /* create a dynamic string of size same as size of file */
-        char *findStr = (char *)malloc(sizeFind + 1); /* +1 for '\0' */
-
-        /* read content of file */
-        fread(findStr, 1, sizeFind, findf);
-        findStr[sizeFind] = '\0';
-        rewind(findf);
-
         /* Taking input of word which we want to find in file */
         char findWord[30];
-        printf("Enter the word whose frequency you want to find : \n");
+        printf("Enter the word which you want to find : \n");
         fgets(findWord, sizeof(findWord), stdin);
         findWord[strcspn(findWord, "\n")] = '\0';
 
@@ -203,8 +195,6 @@ int main()
         wordFind(findWord, findf);
 
         fclose(findf);
-        free(findStr);
-        findStr = NULL;
         break;
     }
 
@@ -283,20 +273,10 @@ int main()
         long sizeCh = ftell(chf);
         rewind(chf);
 
-        /* create a dynamic string of size same as size of file */
-        char *chStr = (char *)malloc(sizeCh + 1); /* +1 for '\0' */
-
-        /* read content of file */
-        fread(chStr, 1, sizeCh, chf);
-        chStr[sizeCh] = '\0';
-        rewind(chf);
-
         /* passing to the function to find word in file*/
         lineCharCount(chf);
 
         fclose(chf);
-        free(chStr);
-        chStr = NULL;
         break;
     }
 
