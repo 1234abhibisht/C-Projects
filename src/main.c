@@ -56,7 +56,7 @@ int main()
             content[elementsInitial] = c;
             elementsInitial++;
         }
-        // content[elementsInitial] = '\0';
+        content[elementsInitial] = '\0';
 
         FILE *createf = fopen(fileCreate, "w");
         if (!createf)
@@ -66,7 +66,7 @@ int main()
         }
 
         /* write content from string to the file created */
-        fwrite(content, 1, strlen(content), createf);
+        fwrite(content, 1, elementsInitial, createf);
         rewind(createf);
 
         fclose(createf);
