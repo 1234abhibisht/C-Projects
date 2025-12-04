@@ -180,11 +180,6 @@ int main()
             exit(1);
         }
 
-        /* finding size of file */
-        fseek(findf, 0, SEEK_END);
-        long sizeFind = ftell(findf);
-        rewind(findf);
-
         /* Taking input of word which we want to find in file */
         char findWord[30];
         printf("Enter the word which you want to find : \n");
@@ -267,11 +262,6 @@ int main()
             perror("fopen");
             exit(1);
         }
-
-        /* finding size of file */
-        fseek(chf, 0, SEEK_END);
-        long sizeCh = ftell(chf);
-        rewind(chf);
 
         /* passing to the function to find word in file*/
         lineCharCount(chf);
