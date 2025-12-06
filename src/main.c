@@ -9,6 +9,7 @@ int main()
     enum Menu response;
     while (1)
     {
+        printf("\n");
         printf("-----Select the tool which you want to use-----\n");
         printf("\n----------------------------------------------------------\n");
         printf("1 - Create a new file\n");
@@ -256,7 +257,7 @@ int main()
 
         case linechar:
         {
-            printf("------You have selected to find word in file------\n");
+            printf("------You have selected to count characters and lines in file------\n");
 
             /* read a file */
             printf("Enter your file name : \n");

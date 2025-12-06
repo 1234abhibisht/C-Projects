@@ -47,6 +47,11 @@ void replaceWords(char *oldStr, char *wordOld, char *wordNew, char *fileName)
     int count = 0;
 
     char *ptr1 = oldStr;
+    if (strstr(ptr1, wordOld) == NULL)
+    {
+        printf("-----Word not found in file-----\n");
+        return;
+    }
     while ((ptr1 = strstr(ptr1, wordOld)) != NULL)
     {
         count++;
